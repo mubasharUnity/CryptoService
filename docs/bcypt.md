@@ -14,6 +14,8 @@ Comparison message between hash and password strings has two component in its pa
 
 ![packet structure](./img/hash_compare_request.png)
 
-Response for comparison is a boolean value of `1 byte`. `0x00` for `false` and `0x01` for `true`. Payload is just one byte.
+Response for comparison is a boolean value of `1 byte`. `0x00` for `false` when password string and hash in request do not match. `0x01` for `true` password string and hash in request do match . 
+
+Payload for response `0x83` is just one byte.
 
 ![packet structure](./img/hash_compare_response.png)
