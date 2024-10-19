@@ -19,7 +19,9 @@ This service is TCPIP-based.  The core service code is in **main.go** file.
 |Payload|**[variable]**|Contain the data to be processed by the service according to the mode specified. This is treated as a byte array of Hex.|
 
 **Mode** = The most significant bit of the byte is reserved to donate a response from the service. The rest of the 7-bit will be echoed back as is.
+
 **Message ID** = Preferably human-readable ASCII string.
+
 **Payload Length** = This implementation's Max limit is 8K Bytes. It can be changed using the variable **BUFFER_LENGTH** in **config.go**
 
 # Mode Specification
@@ -27,3 +29,5 @@ This service is TCPIP-based.  The core service code is in **main.go** file.
 |-|-|-|
 |0x00|0x80|Encypt data with AES |
 |0x01|0x81|Decrypt data with AES |
+|0x02|0x82|Hash passwords with bcrypt |
+|0x03|0x83|Validate hashes against a password string |
