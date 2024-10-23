@@ -13,11 +13,11 @@ func HandleConnection(conn net.Conn) {
 	defer func() {
 		cancel()
 		conn.Close()
+		close(outChan)
 		for value := range outChan {
 			fmt.Println("drained buffer of id: ", len(value.inMessage.msgId))
 		}
 
-		close(outChan)
 		if r := recover(); r != nil {
 			fmt.Println("Recovered in f", r)
 		}
