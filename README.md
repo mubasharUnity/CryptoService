@@ -4,6 +4,13 @@ This is a simple crypto service written in Go. The purpose is to have central cr
 
 This service provides encryption, decryption and hashing control.
 
+# Environment
+Three environment variables are required in the current version for this service to work.
+|Name|Description|
+|-|-|
+|aes_key|Key for AES encryption/decryption. Service reads it from the system's environment variable|
+|tls_key|TLS key file full path.|
+|tls_cert|TLS certificates full path|
 
 # Network Interface
 This service is TCPIP-based.  The core service code is in **main.go** file. 
