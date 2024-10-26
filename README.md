@@ -4,7 +4,12 @@ This is a simple crypto service written in Go. The purpose is to have central cr
 
 This service provides encryption, decryption and hashing control.
 
-# Environment
+## TLS Setup
+The service uses TLS for connection. TLS needs a key and certificate. Paths of both of these are read from the environment. If you don't have the certificate, generate a debug/testing certificate using the following command. Or you can request one from some CA like GoDaddy.
+
+
+> openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+## Environment
 Three environment variables are required in the current version for this service to work.
 |Name|Description|
 |-|-|
@@ -12,11 +17,11 @@ Three environment variables are required in the current version for this service
 |tls_key|TLS key file full path.|
 |tls_cert|TLS certificates full path|
 
-# Network Interface
+## Network Interface
 This service is TCPIP-based.  The core service code is in **main.go** file. 
 ![packet structure](./docs/img/packet.png)
 
-# Packet Fields Breakdown
+## Packet Fields Breakdown
 |Field Name|Length|Description|
 |-|-|-|
 |Message Version|1 Byte|contain the version of package.|
@@ -31,7 +36,7 @@ This service is TCPIP-based.  The core service code is in **main.go** file.
 
 **Payload Length** = This implementation's Max limit is 8K Bytes. It can be changed using the variable **BUFFER_LENGTH** in **config.go**
 
-# Mode Specification
+## Mode Specification
 |Mode Value|Response|Description|
 |-|-|-|
 |0x00|0x80|Encypt data with AES |
