@@ -9,28 +9,26 @@ import (
 func TestMessageDecode(t *testing.T) {
 	messageByte, err := hex.DecodeString("0100aabbaabbaabbaabbaabbaabbaabbaabb0003111111")
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err.Error())
 	}
 
 	messageByteCount := len(messageByte)
 	msgInstance, errparsing := DeconstructMessage(messageByte, messageByteCount)
 	if errparsing != nil {
-		t.Errorf(errparsing.Error())
+		t.Error(errparsing.Error())
 	}
-
 	if msgInstance.msgVersion != 0x01 {
-		t.Errorf("Message version parsing failed")
+		t.Error("Message version parsing failed")
 	}
 	if msgInstance.mode != 0x00 {
-		t.Errorf("Message mode parsing failed")
+		t.Error("Message mode parsing failed")
 	}
 	if reflect.DeepEqual(msgInstance.msgIdBytes, messageByte[4:20]) {
-		t.Errorf("Message id parsing failed")
+		t.Error("Message id parsing failed")
 	}
 	if msgInstance.lengthPayload != 3 {
-		t.Errorf("Payload length parsing failed")
+		t.Error("Payload length parsing failed")
 	}
-
 	if !msgInstance.ValidatePayload(messageByteCount) {
 		t.Errorf("Payload length validation failed")
 	}

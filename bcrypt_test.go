@@ -30,7 +30,7 @@ func TestHashingTestPossitive(t *testing.T) {
 	compareResults, _ := hashCompare.Process(comparisonPayload)
 
 	if compareResults[0] == 0 {
-		t.Errorf("Hash comparison with correct password failed")
+		t.Error("Hash comparison with correct password failed")
 	}
 
 	wrongPasswordLength := len(wrongPassword)
@@ -46,6 +46,6 @@ func TestHashingTestPossitive(t *testing.T) {
 	compareResults, _ = hashCompare.Process(comparisonPayload)
 
 	if compareResults[0] == 1 {
-		t.Errorf("Hash comparison with wrong password passed")
+		t.Error("Hash comparison with wrong password passed")
 	}
 }
